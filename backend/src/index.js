@@ -1,8 +1,12 @@
 const express = require("express");
-const app = express();
+const cors = require('cors');
 const connectToDB = require("./db");
 const Campground = require("./models/campground");
+
+const app = express();
 const port = 3000;
+
+app.use(cors())
 
 app.listen(port, () => {
   connectToDB();
