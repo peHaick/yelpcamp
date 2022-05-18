@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>All Campgrounds</h1>
+  <ul>
+    <li *ngFor="let campground of campgrounds; index as i">
+      <app-card [campground]="campground" [index]="i"></app-card>
+    </li>
+  </ul>
+</div>
