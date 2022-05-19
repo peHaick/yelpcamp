@@ -1,0 +1,29 @@
+<div class="modal modal-alert position-fixed d-block bg-black bg-opacity-75">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ title }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ message }}</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="closeModal()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn {{ buttonClass }}"
+          (click)="confirmModal()"
+        >
+          {{ confirm }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,13 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const connectToDB = require("./db");
 const Campground = require("./models/campground");
 
 const app = express();
 const port = 3000;
 
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
 app.listen(port, () => {
   connectToDB();
@@ -33,13 +34,13 @@ app.post("/campgrounds", async (req, res) => {
 app.put("/campgrounds/:id", async (req, res) => {
   const { id } = req.params;
   const campground = await Campground.findByIdAndUpdate(id, {
-    ...req.body.campground,
+    ...req.body.updates,
   });
 
   res.send(campground);
 });
 
-app.delete("campgrounds/:id", async (req, res) => {
+app.delete("/campgrounds/:id", async (req, res) => {
   const { id } = req.params;
   await Campground.findByIdAndDelete(id);
 });

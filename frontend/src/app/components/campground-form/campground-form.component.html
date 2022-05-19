@@ -1,0 +1,77 @@
+<form
+  class="col-sm-5 m-auto"
+  *ngIf="campground"
+  #form="ngForm"
+  (ngSubmit)="onSubmit(form)"
+  ngNativeValidate
+>
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      name="title"
+      [(ngModel)]="campground.title"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="location" class="form-label">Location</label>
+    <input
+      type="text"
+      class="form-control"
+      id="location"
+      name="location"
+      [(ngModel)]="campground.location"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea
+      type="text"
+      class="form-control"
+      id="description"
+      name="description"
+      [(ngModel)]="campground.description"
+      required
+    ></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="imageURL" class="form-label">Image URL</label>
+    <input
+      type="text"
+      class="form-control"
+      id="imageURL"
+      name="imageURL"
+      [(ngModel)]="campground.imageURL"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <div class="input-group">
+      <span class="input-group-text">$</span>
+      <input
+        type="number"
+        placeholder="0.00"
+        step="0.01"
+        class="form-control"
+        id="price"
+        name="price"
+        [(ngModel)]="campground.price"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="col-12 d-flex flex-row-reverse justify-content-between">
+    <button class="btn btn-primary" type="submit">{{ buttonMessage }}</button>
+    <button class="btn btn-outline-primary" (click)="goBack()">Return</button>
+  </div>
+</form>

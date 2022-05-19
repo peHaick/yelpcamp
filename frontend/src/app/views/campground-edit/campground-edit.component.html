@@ -1,0 +1,7 @@
+<h1 class="text-center">Edit Campground</h1>
+<app-campground-form
+  buttonMessage="Save"
+  [campground]="campground"
+  [goBackButton]="true"
+  (onFormSubmit)="updateCampground($event)"
+></app-campground-form>
