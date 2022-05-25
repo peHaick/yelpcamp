@@ -1,5 +1,41 @@
-<app-card
-  [campground]="campground"
-  [footer]="true"
-  class="col-sm-6 m-auto"
-></app-card>
+<div class="card shadow-sm col-sm-6 m-auto" *ngIf="campground; else loading">
+  <img
+    src="{{ campground.imageURL }}"
+    class="card-img-top"
+    alt="Campground Image"
+  />
+
+  <div class="card-body">
+    <div class="card-title d-flex justify-content-between align-items-center">
+      <h5>{{ campground.title }}</h5>
+      <h5 class="text-muted">${{ campground.price }}</h5>
+    </div>
+    <h6 class="card-subtitle text-secondary">{{ campground.location }}</h6>
+    <p class="card-text">
+      {{ campground.description }}
+    </p>
+  </div>
+  <div class="card-body d-flex justify-content-between align-items-center">
+    <div>
+      <button class="btn btn-primary me-4" (click)="return()">Return</button>
+      <a routerLink="./edit" class="card-link">Edit</a>
+    </div>
+    <button class="btn btn-danger" (click)="toggleModal()">Delete</button>
+  </div>
+</div>
+
+<app-modal
+  *ngIf="modalOpen"
+  title="Confirm deletion"
+  message="Do you want to delete {{ campground.title }}?"
+  confirm="Delete"
+  buttonClass="btn-danger"
+  (onClose)="toggleModal()"
+  (onConfirm)="deleteCampground()"
+></app-modal>
+
+<ng-template #loading>
+  <div class="spinner-container text-center">
+    <div class="spinner-border"></div>
+  </div>
+</ng-template>

@@ -1,10 +1,37 @@
 <h1 class="text-center">All Campgrounds</h1>
-<ul>
-  <li *ngFor="let campground of campgrounds; index as i">
-    <app-card
-      [truncate]="true"
-      (click)="selectCampground(campground._id!)"
-      [campground]="campground"
-    ></app-card>
-  </li>
-</ul>
+
+<div *ngIf="!loading">
+  <ul>
+    <li *ngFor="let campground of campgrounds">
+      <app-card
+        [campground]="campground"
+        (click)="selectCampground(campground._id!)"
+      ></app-card>
+    </li>
+  </ul>
+
+  <div class="d-flex justify-content-between">
+    <div>
+      <button
+        *ngIf="page != 1"
+        (click)="goToPage(page - 1)"
+        class="btn btn-primary"
+      >
+        Previous
+      </button>
+    </div>
+    <div>
+      <button
+        *ngIf="page != last_page"
+        (click)="goToPage(page + 1)"
+        class="btn btn-primary"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loading" class="spinner-container text-center">
+  <div class="spinner-border"></div>
+</div>

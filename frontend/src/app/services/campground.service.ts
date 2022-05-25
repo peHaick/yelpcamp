@@ -11,12 +11,18 @@ export class CampgroundService {
 
   constructor(private http: HttpClient) {}
 
-  fetchAll(): Observable<Campground[]> {
-    return this.http.get<Campground[]>(this.apiURL);
+  fetchPage(page: number, page_size: number): Observable<Campground[]> {
+    return this.http.get<Campground[]>(
+      `${this.apiURL}?page=${page}&page_size=${page_size}`
+    );
   }
 
   fetchById(id: string): Observable<Campground> {
     return this.http.get<Campground>(`${this.apiURL}/${id}`);
+  }
+
+  getAmount(): Observable<{ amount: number }> {
+    return this.http.get<{ amount: number }>(`${this.apiURL}/amount`);
   }
 
   create(campground: Campground): Observable<Campground> {
